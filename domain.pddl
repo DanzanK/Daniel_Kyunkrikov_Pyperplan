@@ -1,0 +1,33 @@
+(define (domain blocks-world-multi-agent)
+ (:requirements :strips)
+ (:types block agent)
+ (:constants table)
+ (:predicates
+  (on ?x - block ?y - block)
+  (on-table ?x - block)
+  (clear ?x - block)
+  (holding ?a - agent ?b - block)
+  (empty-hand ?a - agent)
+  (can-handle ?a - agent ?b - block)
+ )
+ (:action pickup_from_table
+  :parameters (?agent - agent ?block - block)
+  :precondition (and (on-table ?block) (clear ?block) (empty-hand ?agent) (can-handle ?agent ?block))
+  :effect (and (not (on-table ?block)) (holding ?agent ?block) (not (empty-hand ?agent)) (not (clear ?block)))
+ )
+ (:action pickup_from_block
+  :parameters (?agent - agent ?block - block ?on_block - block)
+  :precondition (and (on ?block ?on_block) (clear ?block) (empty-hand ?agent) (can-handle ?agent ?block))
+  :effect (and (not (on ?block ?on_block)) (holding ?agent ?block) (not (empty-hand ?agent)) (clear ?on_block) (not (clear ?block)))
+ )
+ (:action place_on_table
+  :parameters (?agent - agent ?block - block)
+  :precondition (holding ?agent ?block)
+  :effect (and (not (holding ?agent ?block)) (empty-hand ?agent) (on-table ?block) (clear ?block))
+ )
+ (:action place_on_block
+  :parameters (?agent - agent ?block - block ?target_block - block)
+  :precondition (and (holding ?agent ?block) (clear ?target_block))
+  :effect (and (not (holding ?agent ?block)) (empty-hand ?agent) (on ?block ?target_block) (clear ?block) (not (clear ?target_block)))
+ )
+)
