@@ -35,7 +35,7 @@ problem.pddl:
  
 ![image](https://github.com/user-attachments/assets/031345d5-484d-4ce6-8643-0943552891fb)
 
-Если файлы PDDL существуют, скрипт логирует сообщение о начале работы и запускает Pyperplan как модуль Python с помощью subprocess.run. Флаг --loglevel debug обеспечивает вывод подробных отладочных сообщений, таких как этапы grounding и итерации BFS.
+Если файлы PDDL существуют, скрипт логирует сообщение о начале работы и запускает Pyperplan как модуль Python с помощью sys.argv. Флаг --loglevel debug обеспечивает вывод подробных отладочных сообщений, таких как этапы grounding и итерации BFS.
 
 Обработка результата работы pyperplan заключается в следующем: Если выполнение завершилось успешно, скрипт проверяет наличие файла решения (.soln), читает его и передаёт в функцию parse_plan для преобразования. Затем он выводит план действий с нумерацией шагов в читаемом виде.
 
@@ -52,6 +52,9 @@ problem.pddl:
 
 
 
-https://github.com/user-attachments/assets/ad64ac2f-a5e3-4ffb-b9d0-fa3d54a24a76
+https://github.com/user-attachments/assets/e3e54500-e23e-494b-9286-787beb83e564
+
+
+
 
 
